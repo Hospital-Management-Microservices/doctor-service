@@ -86,6 +86,10 @@ public class DoctorService {
             } catch (Exception e) {
                 log.warn("Could not fetch department info: {}", e.getMessage());
             }
+        } else {
+            // Clear department info when doctor is removed from department
+            existing.setDepartmentId(null);
+            existing.setDepartmentName(null);
         }
 
         Doctor updated = doctorRepository.save(existing);
